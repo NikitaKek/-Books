@@ -1,6 +1,10 @@
 <?php
 require_once ('Routes.php');
 
+
+/**
+ * @param $class_name
+ */
 function __autoload($class_name)
 {
         if(file_exists('classes/'.$class_name.'.php')) {

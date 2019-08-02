@@ -22,10 +22,7 @@ class  AuthorController extends Controller
 
     static public function editAuthor($id, $name , $date )
     {
-        $author = new author;
-        $author->setId($id);
-        $author->setName($name);
-        $author->setDate($date);
+        $author = new author($id, $name, $date);
         $AuthorService = new AuthorService();
         $AuthorService->editAuthor($author);
     }

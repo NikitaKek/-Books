@@ -3,65 +3,59 @@
 
 class AuthorAdapter
 {
-
     /**
      * @param $name
      * @param $date
+     * @return int
      */
-
     public static function addAuthor($name , $date)
     {
-        $query = "INSERT INTO `author` (`name`,`date`) VALUES 
+        $result = false;
+        if (!empty($author_id)) {
+            $query = "INSERT INTO `author` (`name`,`date`) VALUES 
                 ('$name',
                 '$date')";
-        DataBase::query($query);
+            return DataBase::queryINSERT($query);
+        }
     }
-
-
     /**
      * @param $id
      */
     public function delAuthor($id)
     {
-        $query = "DELETE FROM `author` WHERE ID = ".$id;
-        DataBase::query($query);
+        $result = false;
+        if (!empty($author_id)) {
+            $query = "DELETE FROM `author` WHERE ID = " . $id;
+            DataBase::query($query);
+        }
     }
-
     /**
      * @param $id
      * @param $name
      * @param $date
      */
-    public function editAuthor($id , $name, $date)
+    public function editAuthor(array $arr, $id)
     {
-        if ($date == NULL) {
-            $query = "UPDATE `author` SET name = '$name' WHERE ID = '$id'";
+        $result = false;
+        if (!empty($author_id)) {
+            $set = implode(',', $arr);
+            $query = "UPDATE `author` 
+                    SET " . $set . " WHERE id = " . $id;
+            DataBase::query($query);
         }
-        if ($name == NULL) {
-            $query = "UPDATE `author` SET date = '$date'  WHERE ID = '$id'";
-        }
-        if ($name != NULL && $date != NULL) {
-            $query = "UPDATE `author` SET name = '$name',date = '$date'  WHERE ID = '$id'";
-        }
-        DataBase::query($query);
     }
-
-    public function getNumAuthor()
-    {
-        $query = "SELECT MAX(ID) FROM author";
-        $row = DataBase::query($query);
-        return $row[0];
-    }
-
-    /**
+     /**
      * @param $book_id
+     * @return bool
      */
-    public function delbookauthor($author_id)
+    public function deleteBookAuthor($author_id)
     {
-
-        $query = "DELETE FROM `bookauthor` WHERE author_id = ".$author_id;
-        DataBase::query($query);
-        print_r($query);
+        $result = false;
+        if (!empty($author_id)) {
+            $query = "DELETE FROM `bookauthor` WHERE author_id = ".$author_id;
+            $result = DataBase::query($query);
+        }
+        return $result;
     }
 
     public function getbookid($author_id)
@@ -73,13 +67,15 @@ class AuthorAdapter
 
     public function AuthorName($id)
     {
-        $query = "SELECT name FROM `author` WHERE id =". $id;
-        return DataBase::querySELECT($query);
+        $query = "SELECT `name` FROM `author` WHERE id =". $id;
+        $name = DataBase::query($query);
+        return $name[0]['name'];
     }
     public function AuthorDate($id)
     {
-        $query = "SELECT date FROM `author` WHERE id =". $id;
-        return DataBase::querySELECT($query);
+        $query = "SELECT `date` FROM `author` WHERE id =". $id;
+        $date = DataBase::query($query);
+        return $date[0]['date'];
     }
 
 }

@@ -39,8 +39,15 @@ class AuthorService
         $id = $author->getId();
         $name = $author->getName();
         $date = $author->getDate();
-
-        $this->adapter->editAuthor($id , $name, $date);
+        $arr = array('id' => $id,
+            'name' => $name,
+            'date' => $date,);
+        foreach ($arr as $key => $value){
+            if ($value != NULL) {
+                $notEmptyArr[] = "$key='$value'";
+            }
+        }
+        $this->adapter->editAuthor($notEmptyArr, $id);
     }
 
     public function getAuthorName($id)

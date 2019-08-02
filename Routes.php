@@ -5,7 +5,7 @@
     });
 
     Route::set('tableCustomer', function() {
-                tableCustomer::CreateView(tableCustomer);
+                CustomerController::CreateView(tableCustomer);
     });
 
 
@@ -14,7 +14,11 @@
         });
 
      Route::set('viewbook', function() {
-                viewbookController::Createview(viewbook);
+                viewBookController::CreateView(viewbook);
      });
+
+      Route::set('tableDeal', function() {
+                     DealController::CreateView(tableDeal);
+          });
 
     ?>

@@ -29,7 +29,6 @@ class DataBase
        $link = self::connect();
         $data = $link->query($query);
             return $data;
-
     }
 
 
@@ -42,15 +41,28 @@ class DataBase
         $link = self::connect();
 
         $sql = mysqli_query($link,$query);
-        if ($sql) {
-
-        } else {
+        if (!$sql) {
             echo '<p>Error: ' . mysqli_error($link) . '</p>';
         }
 
-        $row = mysqli_fetch_row($sql);
+
+        $row = mysqli_fetch_all($sql, MYSQLI_ASSOC);
         return $row;
 
     }
+
+    public static function queryINSERT($query)
+    {
+        $link = self::connect();
+
+        $sql = mysqli_query($link,$query);
+        if (!$sql) {
+            echo '<p>Error: ' . mysqli_error($link) . '</p>';
+        }
+
+        return mysqli_insert_id($link);
+
+    }
+
 
 }

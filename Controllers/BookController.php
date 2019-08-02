@@ -12,29 +12,21 @@ class BookController extends Controller
      */
     static public function addBook($title, $author, $numPages, $price)
     {
-        $book = new Book;
-        $book->setAuthor($author);
-        $book->setNumPages($numPages);
-        $book->setPrice($price);
-        $book->setTitle($title);
+        $book = new Book('', $title, $numPages, $price, $author);
         $BookService = new BookService;
         $BookService->addBook($book);
     }
 
     static public function delBook($id)
     {
-        BookService::delBook($id);
+        $BookService = new BookService;
+        $BookService->delBook($id);
     }
 
 
     static public function editBook($id,$title, $numPage, $price)
     {
-        $book = new Book();
-        $book->setTitle($title);
-        $book->setId($id);
-        $book->setNumPages($numPage);
-        $book->setPrice($price);
-
+        $book = new Book($id,$title,$numPage,$price,'');
         $BookService = new BookService();
         $BookService->editBook($book);
     }

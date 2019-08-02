@@ -6,7 +6,6 @@
         <td><b>Avtor</b></td>
     </tr>
 <?php
-
 $result = DataBase::querySELECT("SELECT book.title,book.numPages,book.price, GROUP_CONCAT(author.name) as name
                                           FROM book LEFT JOIN bookauthor
                                                 ON  book.id = bookauthor.book_id

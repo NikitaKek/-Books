@@ -11,6 +11,14 @@ class Book
     private $bookService;
 
 
+    /**
+     * Book constructor.
+     * @param $id
+     * @param $title
+     * @param $numPages
+     * @param $price
+     * @param $author
+     */
     public function __construct($id, $title, $numPages, $price, $author)
     {
         $this->bookService = new BookService();
@@ -68,7 +76,7 @@ class Book
     public function getTitle()
     {
         if (empty($this->title)) {
-            $this->title = $this->bookService->getbooktitile($this->id);
+            $this->title = $this->bookService->getBookTitle($this->id);
         }
         return $this->title;
     }
@@ -79,7 +87,7 @@ class Book
     public function getPrice()
     {
         if (empty($this->price)) {
-            $this->price = $this->bookService->getbookprice($this->id);
+            $this->price = $this->bookService->getBookPrice($this->id);
         }
         return $this->price;
     }
@@ -89,8 +97,8 @@ class Book
      */
     public function getNumPages()
     {
-        if (empty($this->NumPages)) {
-            $this->numPages = $this->bookService->getbookNumPages($this->id);
+        if (empty($this->numPages)) {
+            $this->numPages = $this->bookService->getBookNumPages($this->id);
         }
         return $this->numPages;
     }
@@ -101,9 +109,9 @@ class Book
     public function getAuthor()
     {
         if (empty($this->author)) {
-            $this->numPages = $this->bookService->getbookauthor($this->id);
+            $this->author = $this->bookService->getBookAuthor($this->id);
         }
-        return $this->numPages;
+        return $this->author;
     }
 
     /**
