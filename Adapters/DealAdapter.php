@@ -15,20 +15,22 @@ class DealAdapter
         if(!empty($id)) {
             $query = "DELETE FROM `deal` WHERE id =". $id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }
 
     public function editDeal(array $arr,$id)
     {
-        $resault = false;
+        $result = false;
         if(!empty($id)) {
             $set = implode(',', $arr);
             $query = "UPDATE `deal` 
                     SET ".$set." WHERE id = ".$id;
             DataBase::query($query);
+            $result = true;
         }
-        return $resault;
+        return $result;
     }
 
     public function DealDate($id)
@@ -51,6 +53,7 @@ class DealAdapter
         if(!empty($id)) {
             $query = "DELETE FROM `CustomerDealBook` WHERE id_deal =". $id;
             database::query($query);
+            $resault = true;
         }
         return $resault;
     }

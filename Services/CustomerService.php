@@ -3,7 +3,7 @@ require_once ('./Adapters/CustomerAdapter.php');
 require_once ('DealService.php');
 class CustomerService
 {
-    private $adapter;
+    public $adapter;
 
     public function __construct()
     {
@@ -25,7 +25,7 @@ class CustomerService
     {
         $deals = $this->adapter->findDeals($id);
         $DealService = new DealService();
-        $this->adapter->deleteCustomerDealBook($id);
+        $this->adapter->deleteCustomerDealBook($id, 'id_customer');
         foreach ($deals as $row) {
             $DealService->deleteDeal($row['id_deal']);
         }

@@ -21,6 +21,7 @@ class BookAdapter
         if(!empty($id)) {
             $query = "DELETE FROM `book` WHERE ID = " . $id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }
@@ -34,6 +35,7 @@ class BookAdapter
             $query = "UPDATE `book` 
                     SET ".$set." WHERE id = ".$id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }
@@ -46,6 +48,7 @@ class BookAdapter
         if(!empty($id)) {
             $query = "DELETE FROM `bookauthor` WHERE book_id = ".$book_id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }
@@ -61,6 +64,7 @@ class BookAdapter
                 ('$book_id',
                 '$author_id')";
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }

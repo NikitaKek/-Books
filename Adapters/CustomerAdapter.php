@@ -22,6 +22,7 @@ class CustomerAdapter
         if(!empty($id)) {
             $query = "DELETE FROM `customer` WHERE id =". $id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }
@@ -32,6 +33,7 @@ class CustomerAdapter
         if(!empty($id)) {
             $query = "UPDATE `customer` SET name ='$name'WHERE id =". $id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }
@@ -43,12 +45,13 @@ class CustomerAdapter
         return $arr;
     }
 
-    public function deleteCustomerDealBook($id)
+    public function deleteCustomerDealBook($id, $idName)
     {
         $resault = false;
         if(!empty($id)) {
-            $query = "DELETE FROM `CustomerDealBook` WHERE id_customer =". $id;
+            $query = "DELETE FROM `CustomerDealBook` WHERE '$idName' =". $id;
             DataBase::query($query);
+            $resault = true;
         }
         return $resault;
     }

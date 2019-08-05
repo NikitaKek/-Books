@@ -1,5 +1,6 @@
 <?php
 require_once ('./Adapters/DealAdapter.php');
+require_once ('CustomerService.php');
 
 class DealService
 {
@@ -22,7 +23,8 @@ class DealService
 
     public function deleteDeal($id)
     {
-        $this->adapter->deleteCustomerDealBook($id);
+        $customerService = new CustomerService();
+        $customerService->adapter->deleteCustomerDealBook($id, 'id_deal');
         $this->adapter->deleteDeal($id);
     }
 
