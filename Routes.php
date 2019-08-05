@@ -17,6 +17,10 @@
                 viewBookController::CreateView(viewbook);
      });
 
+     Route::set('viewDeal', function() {
+                     viewBookController::CreateView(viewDeal);
+          });
+
       Route::set('tableDeal', function() {
                      DealController::CreateView(tableDeal);
           });
