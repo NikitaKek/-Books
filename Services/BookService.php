@@ -28,6 +28,7 @@ class BookService
 
     public function delBook($id)
     {
+        $this->adapter->deleteCustomerDealBook($id);
         $this->adapter->delBookAuthor($id);
         $this->adapter->delBook($id);
     }

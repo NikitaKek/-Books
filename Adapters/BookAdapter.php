@@ -18,7 +18,7 @@ class BookAdapter
     public function delBook($id)
     {
         $resault = false;
-        if(empty($id)) {
+        if(!empty($id)) {
             $query = "DELETE FROM `book` WHERE ID = " . $id;
             DataBase::query($query);
         }
@@ -27,18 +27,27 @@ class BookAdapter
 
     public function editBook(array $arr,$id)
     {
-        $set = implode(',', $arr);
-        $query = "UPDATE `book` 
+
+        $resault = false;
+        if(!empty($id)) {
+            $set = implode(',', $arr);
+            $query = "UPDATE `book` 
                     SET ".$set." WHERE id = ".$id;
-        DataBase::query($query);
+            DataBase::query($query);
+        }
+        return $resault;
     }
     /**
      * @param $book_id
      */
     public function delBookAuthor($book_id)
     {
-        $query = "DELETE FROM `bookauthor` WHERE book_id = ".$book_id;
-        DataBase::query($query);
+        $resault = false;
+        if(!empty($id)) {
+            $query = "DELETE FROM `bookauthor` WHERE book_id = ".$book_id;
+            DataBase::query($query);
+        }
+        return $resault;
     }
     /**
      * @param $book_id
@@ -46,10 +55,14 @@ class BookAdapter
      */
     public function addBookAuthor($book_id, $author_id)
     {
-        $query = "INSERT INTO `bookauthor` (`book_id`,`author_id`) VALUES 
+        $resault = false;
+        if(!empty($book_id) || !empty($author_id)) {
+            $query = "INSERT INTO `bookauthor` (`book_id`,`author_id`) VALUES 
                 ('$book_id',
                 '$author_id')";
-        DataBase::query($query);
+            DataBase::query($query);
+        }
+        return $resault;
     }
 
     /**
@@ -94,5 +107,11 @@ class BookAdapter
         $query = "SELECT `author_id` FROM `bookauthor` WHERE id =". $id;
         $author_id = DataBase::query($query);
         return $author_id['author'];
+    }
+
+    public function deleteCustomerDealBook($id)
+    {
+        $query = "DELETE FROM `CustomerDealBook` WHERE id_book =". $id;
+        DataBase::query($query);
     }
 }

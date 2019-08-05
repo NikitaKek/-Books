@@ -10,13 +10,10 @@ class AuthorAdapter
      */
     public static function addAuthor($name , $date)
     {
-        $result = false;
-        if (!empty($author_id)) {
-            $query = "INSERT INTO `author` (`name`,`date`) VALUES 
+       $query = "INSERT INTO `author` (`name`,`date`) VALUES 
                 ('$name',
                 '$date')";
             return DataBase::queryINSERT($query);
-        }
     }
     /**
      * @param $id
@@ -24,10 +21,11 @@ class AuthorAdapter
     public function delAuthor($id)
     {
         $result = false;
-        if (!empty($author_id)) {
+        if (!empty($id)) {
             $query = "DELETE FROM `author` WHERE ID = " . $id;
             DataBase::query($query);
         }
+        return $result;
     }
     /**
      * @param $id
@@ -37,12 +35,13 @@ class AuthorAdapter
     public function editAuthor(array $arr, $id)
     {
         $result = false;
-        if (!empty($author_id)) {
+        if (!empty($id)) {
             $set = implode(',', $arr);
             $query = "UPDATE `author` 
                     SET " . $set . " WHERE id = " . $id;
             DataBase::query($query);
         }
+        return $result;
     }
      /**
      * @param $book_id

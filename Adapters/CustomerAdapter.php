@@ -18,13 +18,38 @@ class CustomerAdapter
 
     public function deleteCustomer($id)
     {
-        $query = "DELETE FROM `customer` WHERE id =". $id;
-        DataBase::query($query);
+        $resault = false;
+        if(!empty($id)) {
+            $query = "DELETE FROM `customer` WHERE id =". $id;
+            DataBase::query($query);
+        }
+        return $resault;
     }
 
     public function editCustomer($id,$name)
     {
-        $query = "UPDATE `customer` SET name ='$name'WHERE id =". $id;
-        DataBase::query($query);
+        $resault = false;
+        if(!empty($id)) {
+            $query = "UPDATE `customer` SET name ='$name'WHERE id =". $id;
+            DataBase::query($query);
+        }
+        return $resault;
+    }
+
+    public function findDeals($id)
+    {
+        $query = "SELECT `id_deal` FROM `CustomerDealBook` WHERE id_customer =". $id;
+        $arr = DataBase::query($query);
+        return $arr;
+    }
+
+    public function deleteCustomerDealBook($id)
+    {
+        $resault = false;
+        if(!empty($id)) {
+            $query = "DELETE FROM `CustomerDealBook` WHERE id_customer =". $id;
+            DataBase::query($query);
+        }
+        return $resault;
     }
 }

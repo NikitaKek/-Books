@@ -22,6 +22,7 @@ class DealService
 
     public function deleteDeal($id)
     {
+        $this->adapter->deleteCustomerDealBook($id);
         $this->adapter->deleteDeal($id);
     }
 
@@ -50,4 +51,5 @@ class DealService
     {
         return $this->adapter->DealStore($id);
     }
+
 }

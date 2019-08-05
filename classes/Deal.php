@@ -8,6 +8,13 @@ class Deal
     private $date;
     private $dealService;
 
+
+    /**
+     * Deal constructor.
+     * @param $id
+     * @param $date
+     * @param $store
+     */
     public function __construct($id, $date, $store)
     {
         $this->id = $id;
@@ -30,7 +37,7 @@ class Deal
     public function getDate()
     {
         if (empty($this->date)) {
-            $this->date = $this->DealService->getDealDate($this->id);
+            $this->date = $this->dealService->getDealDate($this->id);
         }
         return $this->date;
     }
@@ -41,7 +48,7 @@ class Deal
     public function getStore()
     {
         if (empty($this->store)) {
-            $this->store = $this->DealService->getDealStore($this->id);
+            $this->store = $this->dealService->getDealStore($this->id);
         }
         return $this->store;
     }
